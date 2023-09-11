@@ -3,6 +3,9 @@ package com.example.firebase1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.firebase1.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -14,13 +17,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        firebaceRef = FirebaseDatabase.getInstance().getReference("path")
-        binding.hello.setOnClickListener {
-            firebaceRef.setValue("First message")
-                .addOnCompleteListener {
-                    Toast.makeText(this, "data stored ", Toast.LENGTH_SHORT).show()
-                }
+        firebaceRef = FirebaseDatabase.getInstance().getReference("contacts")
 
+        binding.sendBNT.setOnClickListener {
+            saveData()
         }
+    }
+
+    private fun saveData() {
+        val name = binding.name.text.toString()
+        val phone = binding.ph.text.toString()
+        if (name.isEmpty())binding.name.error=" write a name"
+        if (phone.isEmpty())binding.ph.error=" write a phone number"
+        val contactID=firebaceRef.push().key!!
+        val contacts= Contacts(contactID,name,phone)
+        firebaceRef.child(contactID).setValue(contacts)
+            .addOnCompleteListener{
+                Toast.makeText(this,"data stored successfully",Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,"error ${it.message}",Toast.LENGTH_SHORT).show()
+
+            }
     }
 }

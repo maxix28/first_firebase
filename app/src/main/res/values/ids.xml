@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nameText" type="id" />
+    <item name="sendbtn" type="id" />
+    <item name="phoneText" type="id" />
+    <item name="editTextTextPersonName" type="id" />
+    <item name="name" type="id" />
+    <item name="phoneT" type="id" />
+    <item name="phone" type="id" />
+</resources>

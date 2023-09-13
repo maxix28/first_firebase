@@ -1,5 +1,6 @@
 package com.example.firebase1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -22,22 +23,35 @@ class MainActivity : AppCompatActivity() {
         binding.sendBNT.setOnClickListener {
             saveData()
         }
+        binding.showList.setOnClickListener {
+            startActivity(Intent(this, show_activity::class.java))
+        }
     }
 
     private fun saveData() {
         val name = binding.name.text.toString()
         val phone = binding.ph.text.toString()
-        if (name.isEmpty())binding.name.error=" write a name"
-        if (phone.isEmpty())binding.ph.error=" write a phone number"
-        val contactID=firebaceRef.push().key!!
-        val contacts= Contacts(contactID,name,phone)
-        firebaceRef.child(contactID).setValue(contacts)
-            .addOnCompleteListener{
-                Toast.makeText(this,"data stored successfully",Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this,"error ${it.message}",Toast.LENGTH_SHORT).show()
+        if (name.isEmpty()){
+            binding.name.error=" write a name"
+            Toast.makeText(this, "NNNNNAMMMEEEEEEEE", Toast.LENGTH_SHORT).show()
 
-            }
+        }
+        else if (phone.isEmpty()) {
+            binding.ph.error = " write a phone number"
+            Toast.makeText(this, "PHOOONEEEE", Toast.LENGTH_SHORT).show()
+
+
+        } else if(!name.isEmpty()&&!phone.isEmpty()) {
+            val contactID = firebaceRef.push().key!!
+            val contacts = Contacts(contactID, name, phone)
+            firebaceRef.child(contactID).setValue(contacts)
+                .addOnCompleteListener {
+                    Toast.makeText(this, "data stored successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "error ${it.message}", Toast.LENGTH_SHORT).show()
+
+                }
+        }
     }
 }

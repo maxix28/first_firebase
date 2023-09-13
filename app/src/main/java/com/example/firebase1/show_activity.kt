@@ -23,6 +23,7 @@ class show_activity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager= LinearLayoutManager(this@show_activity)
         }
+
     }
 
     private fun fetchData() {

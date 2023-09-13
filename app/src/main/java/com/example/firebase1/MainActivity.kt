@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.sendBNT.setOnClickListener {
             saveData()
+            binding.apply {
+                name.setText("")
+                ph.setText("")
+
+
+            }
         }
         binding.showList.setOnClickListener {
             startActivity(Intent(this, show_activity::class.java))

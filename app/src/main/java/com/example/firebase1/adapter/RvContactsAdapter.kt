@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firebase1.databinding.RvContactItemBinding
 import com.example.firebase1.Contacts
 import com.example.firebase1.Update
+import com.example.firebase1.constant.Extra_Contact
 import com.example.firebase1.show_activity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
@@ -36,8 +37,9 @@ class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>, v
                 phone.text=currentItem.phoneNumber
                 id.text=currentItem.id
 rvContainer.setOnClickListener {
-
-    context.startActivity(Intent(context, Update::class.java))
+val updateInt=Intent(context, Update::class.java)
+    updateInt.putExtra(Extra_Contact,currentItem)
+    context.startActivity(updateInt)
     //startActivity(Intent(this, show_activity::class.java))
 //    startActivity()
 }

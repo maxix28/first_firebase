@@ -1,16 +1,21 @@
 package com.example.firebase1.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firebase1.databinding.RvContactItemBinding
 import com.example.firebase1.Contacts
+import com.example.firebase1.Update
+import com.example.firebase1.show_activity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>):RecyclerView.Adapter<RvContactsAdapter.ViewHolder>() {
+class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>, var context: Context):RecyclerView.Adapter<RvContactsAdapter.ViewHolder>() {
     class ViewHolder(val binding: RvContactItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -30,7 +35,12 @@ class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>):R
                 name.text= currentItem.name
                 phone.text=currentItem.phoneNumber
                 id.text=currentItem.id
+rvContainer.setOnClickListener {
 
+    context.startActivity(Intent(context, Update::class.java))
+    //startActivity(Intent(this, show_activity::class.java))
+//    startActivity()
+}
                 rvContainer.setOnLongClickListener {
                     MaterialAlertDialogBuilder(holder.itemView.context)
                         .setTitle("Delete item permanently")

@@ -36,7 +36,7 @@ class show_activity : AppCompatActivity() {
                         contactList.add(contacts!!)
                     }
                 }
-                val rvAdapter= RvContactsAdapter(contactList)
+                val rvAdapter= RvContactsAdapter(contactList,this@show_activity)
                 binding.rvList.adapter=rvAdapter
             }
 

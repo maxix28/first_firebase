@@ -15,6 +15,7 @@ import com.example.firebase1.show_activity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>, var context: Context):RecyclerView.Adapter<RvContactsAdapter.ViewHolder>() {
     class ViewHolder(val binding: RvContactItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -36,6 +37,9 @@ class RvContactsAdapter(private val contactList:java.util.ArrayList<Contacts>, v
                 name.text= currentItem.name
                 phone.text=currentItem.phoneNumber
                 id.text=currentItem.id
+
+                Picasso.get().load(currentItem.imgUri).into(imgTemp)
+
 rvContainer.setOnClickListener {
 val updateInt=Intent(context, Update::class.java)
     updateInt.putExtra(Extra_Contact,currentItem)

@@ -53,5 +53,30 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="168dp"
+        android:layout_height="203dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/apple"
+        app:layout_constraintBottom_toTopOf="@+id/showList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendBNT"
+        app:layout_constraintVertical_bias="0.308"
+        tools:srcCompat="@drawable/apple" />
+
+    <Button
+        android:id="@+id/photoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:text="Photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

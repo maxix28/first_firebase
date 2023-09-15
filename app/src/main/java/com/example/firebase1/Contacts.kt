@@ -5,10 +5,15 @@ import android.os.Parcelable
 
 data class Contacts( val id:String? = null,
                      val name:String?=null,
-                     val phoneNumber:String?=null):Parcelable{
+                     val phoneNumber:String?=null,
+                     val imgUri:String?=null
+
+):Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+
         parcel.readString()
     ) {
     }
@@ -17,6 +22,8 @@ data class Contacts( val id:String? = null,
         parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(phoneNumber)
+                parcel.writeString(imgUri)
+
     }
 
     override fun describeContents(): Int {
